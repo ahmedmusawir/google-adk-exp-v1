@@ -12,7 +12,6 @@ echo "--------------------------------------------------"
 gcloud run deploy "$SERVICE_NAME" \
   --source . \
   --allow-unauthenticated \
-  --set-env-vars="GOOGLE_API_KEY=AIzaSyAvNyVK8eU-RtASg-6A8isZq5rXOIRo9L8"
 
 echo "--------------------------------------------------"
 echo "✅ If there are no errors above, the deployment is complete!"

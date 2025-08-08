@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Tell Cloud Run what command to run, using the $PORT variable it provides
-# CMD ["sh", "-c", "adk api_server --host 0.0.0.0 --port $PORT"]
 # CMD ["sh", "-c", "adk api_server --port $PORT"]
 
 # Use adk web instead of adk api_server!
