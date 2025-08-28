@@ -1,20 +1,17 @@
 from google.adk.agents import Agent
 from google.adk.tools import built_in_code_execution
+from utils.gcs_utils import fetch_instructions
 
+def get_live_instructions(ctx) -> str:
+    """This function is passed to the Agent and called on every run."""
+    return fetch_instructions("calc_agent")
+
+# Create the agent, passing the function object to the 'instruction' parameter.
+# The 'tools' parameter is preserved as it's specific to this agent.
 root_agent = Agent(
     name="calc_agent",
-    # Using the same model as requested
     model="gemini-2.5-flash",
     description="A calculator agent",
-    instruction="""
-You are a powerful calculator. Your superpower is that you
-can perform any mathematical calculation by writing and executing
-Python code. When a user asks a question that requires math,
-use the code execution tool to find the precise answer.
-
-After you receive the result from the code execution, you
-MUST present that result to the user as the final answer.
-    """,
-    # The tool is an instance of the BuiltInCodeExecutor class
+    instruction=get_live_instructions,
     tools=[built_in_code_execution]
 )
