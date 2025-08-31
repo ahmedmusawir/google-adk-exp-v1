@@ -1,12 +1,5 @@
 from google.adk.agents import Agent
-from google.adk.tools import FunctionTool
-from utils.gcs_utils import fetch_instructions 
-from utils.context_utils import fetch_document 
-
-# 1. Define the tool by wrapping our GCS function in a FunctionTool.
-# This line creates the tool.
-# It automatically reads the docstring from the imported `fetch_document` function.
-resume_reader_tool = FunctionTool(func=fetch_document)
+from utils.gcs_utils import fetch_instructions
 
 # 1. Define a standalone function to fetch instructions.
 #    It must accept one argument (the context), which is passed by the ADK.
@@ -25,5 +18,4 @@ root_agent = Agent(
     model="gemini-2.5-flash",
     description="Greeting agent",
     instruction=get_live_instructions,
-    tools=[resume_reader_tool]
 )
